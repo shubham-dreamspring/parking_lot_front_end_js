@@ -7,8 +7,7 @@ class CarFormComponent extends HTMLElement {
     this.innerHTML = `
       <form
       class="d-flex mt-2"
-      id="car-form"
-      onsubmit="formSubmit(event,${this.getAttribute("action")})"
+      id="car-form-${this.getAttribute("action")}"
     >
       <input
         type="text"

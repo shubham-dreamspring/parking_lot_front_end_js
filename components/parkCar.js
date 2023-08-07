@@ -10,7 +10,7 @@ class ParkCarComponent extends HTMLElement {
         <div class="col">
         <car-form-component btn-text="PARK" action="park"></car-form-component>
         </div>
-        <div class="col d-none" id="slot-div">
+        <div class="col d-none" id="success-div-park">
           Your parking slot is:  <h4 class=" d-inline text-success" id="slot-id"></h4>
         </div>
         <div class="col d-none" id="error-div-park">
