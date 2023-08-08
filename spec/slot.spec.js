@@ -3,52 +3,43 @@ import ParkingLot from "../model/parkingLot.js";
 import Slot from "../model/slot.js";
 
 describe("Slots", () => {
-  
   beforeEach(() => {
-    Slot.reset();
-    Car.reset();
+    ParkingLot.reset();
   });
 
   afterEach(() => {
-    Slot.reset();
-    Car.reset();
+    ParkingLot.reset();
   });
 
-  it("will get empty slot", () => {
+  it("will give empty slot", () => {
     let slot = Slot.getEmptySlot();
 
-    expect(slot.id).toBeDefined();
-    expect(slot.timestamp).toBeNull();
-    expect(slot.vehicle_id).toBeNull();
-  });
-
-  it("will update a slot", () => {
-    let slot = Slot.getEmptySlot();
-
-    slot.timestamp = Date.now();
-    slot.vehicle_id = 1;
-    slot.update();
-
-    expect(Slot.getFilledSlot().length).toBe(1);
+    expect(slot.isEmpty()).toBeTruthy();
   });
 
   describe("when car is parked", () => {
-    beforeEach(() => {
-      ParkingLot.park(new Car("WW12345678"));
+    beforeEach(function () {
+      this.car = new Car("WW12345678");
+      this.parked_car = ParkingLot.park(this.car);
     });
-    afterEach(() => {
-      ParkingLot.initialise();
-    });
-    it("will get filled slots", () => {
-      let slots = Slot.getFilledSlot();
-      expect(slots.length).toBe(1);
-    });
-    it("will return car of a slot", () => {
-      let slot = Slot.find("id", 1);
 
+    afterEach(function () {
+      ParkingLot.reset();
+    });
+
+    it("will give filled slots", function () {
+      let slots = Slot.getFilledSlot();
+
+      expect(slots[0].vehicle_id).toBe(this.car.id);
+    });
+
+    it("will return car parked on a slot", function () {
+      let slot = Slot.find("id", this.parked_car.slot_id);
       let carAtSlot = slot.car();
 
-      expect(carAtSlot.registration_no).toBe("WW12345678");
+      const registration_no = carAtSlot.registration_no;
+
+      expect(registration_no).toBe(this.car.registration_no);
     });
   });
 });

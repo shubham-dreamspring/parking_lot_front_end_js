@@ -17,6 +17,10 @@ class Slot extends CustomOrm {
     this.vehicle_id = vehicle_id;
   }
 
+  isEmpty() {
+    return !this.timestamp && !this.vehicle_id;
+  }
+
   car() {
     let car = Car.find("id", this.vehicle_id);
     if (!car) throw new CarNotFound("car is not parked with this id");

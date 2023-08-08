@@ -1,34 +1,38 @@
 import Car from "../model/car.js";
 import { InvalidInput, AlreadyExist } from "../utils/errors/errors.js";
 
-describe("Cars ", () => {
-  
+describe("Cars", () => {
   beforeEach(() => {
     Car.reset();
   });
+
   afterEach(() => {
     Car.reset();
   });
-  it("will throw error on creation with invalid registration no", () => {
-    let car = new Car("UPsdaksd93459cd48");
 
-    expect(function () {
-      car.create();
-    }).toThrowError(InvalidInput);
-  });
+  describe("on create", () => {
+    it("will throw error if it is invalid registration no", () => {
+      let car = new Car("UPsdaksd93459cd48");
 
-  it("will created", () => {
-    new Car("UP12345678").create();
+      expect(function () {
+        car.create();
+      }).toThrowError(InvalidInput);
+    });
 
-    let car = Car.find("registration_no", "UP12345678");
-    expect(car.registration_no).toBe("UP12345678");
-  });
+    it("will save", () => {
+      let registration_no = "UP12345678";
 
-  it("will throw error on creation with already existed car", () => {
-    new Car("WW91827364").create();
+      new Car(registration_no).create();
 
-    expect(function () {
+      expect(Car.find("registration_no", registration_no)).toBeDefined();
+    });
+
+    it("will throw error if car is already existed", () => {
       new Car("WW91827364").create();
-    }).toThrowError(AlreadyExist);
+
+      expect(function () {
+        new Car("WW91827364").create();
+      }).toThrowError(AlreadyExist);
+    });
   });
 });

@@ -11,8 +11,8 @@ class Car extends CustomORM {
     this.id = id;
   }
 
-  validate() {
-    if (!this.isValidRegistrationNumber()) {
+  _validate() {
+    if (!this._isValidRegistrationNumber()) {
       throw new InvalidRegNo("Not a Valid Registration No");
     }
     if (this.alreadyExist())
@@ -28,11 +28,12 @@ class Car extends CustomORM {
     return false;
   }
 
-  isValidRegistrationNumber() {
+  _isValidRegistrationNumber() {
     const validator = new RegistrationNoValidator();
     return validator.isValidRegistrationNumber(this.registration_no);
   }
-  uid(length = 16) {
+  
+  _uid(length = 16) {
     return parseInt(
       Math.ceil(Math.random() * Date.now())
         .toPrecision(length)
@@ -42,8 +43,8 @@ class Car extends CustomORM {
   }
 
   create() {
-    this.validate();
-    this.id = this.uid();
+    this._validate();
+    this.id = this._uid();
     super.create();
     return this;
   }
