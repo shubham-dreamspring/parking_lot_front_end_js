@@ -1,0 +1,24 @@
+{
+  "name": "parking_lot_front_end_js",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubham-dreamspring/parking_lot_front_end_js.git"
+  },
+  "author": "Shubham Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubham-dreamspring/parking_lot_front_end_js/issues"
+  },
+  "homepage": "https://github.com/shubham-dreamspring/parking_lot_front_end_js#readme",
+  "devDependencies": {
+    "jasmine": "4.5.0",
+    "jasmine-local-storage": "^1.1.2"
+  }
+}

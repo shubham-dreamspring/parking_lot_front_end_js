@@ -13,11 +13,11 @@ class Adapter {
 
   readAndWrite(doc, cb, write = false) {
     try {
-      let data = window.localStorage.getItem(this.#dbDoc[doc]);
+      let data = localStorage.getItem(this.#dbDoc[doc]);
       data = JSON.parse(data);
       let result = cb(data);
       if (write)
-        window.localStorage.setItem(this.#dbDoc[doc], JSON.stringify(result));
+        localStorage.setItem(this.#dbDoc[doc], JSON.stringify(result));
       return result;
     } catch (e) {
       console.log(e);
@@ -27,7 +27,7 @@ class Adapter {
 
   write(doc, data) {
     try {
-      window.localStorage.setItem(this.#dbDoc[doc], JSON.stringify(data));
+      localStorage.setItem(this.#dbDoc[doc], JSON.stringify(data));
       return data;
     } catch (e) {
       console.log(e);
@@ -35,7 +35,7 @@ class Adapter {
     }
   }
   initialiseDB() {
-    if (window.localStorage.getItem(this.#dbDoc.slots) === null) {
+    if (localStorage.getItem(this.#dbDoc.slots) === null) {
       let slots = [];
       for (let i = 1; i <= this.totalSlots; i++) {
         slots.push({
@@ -44,10 +44,10 @@ class Adapter {
           id: i,
         });
       }
-      window.localStorage.setItem(this.#dbDoc.slots, JSON.stringify(slots));
+      localStorage.setItem(this.#dbDoc.slots, JSON.stringify(slots));
     }
-    if (window.localStorage.getItem(this.#dbDoc.vehicles) === null) {
-      window.localStorage.setItem(this.#dbDoc.vehicles, JSON.stringify([]));
+    if (localStorage.getItem(this.#dbDoc.vehicles) === null) {
+      localStorage.setItem(this.#dbDoc.vehicles, JSON.stringify([]));
     }
   }
 }
