@@ -54,7 +54,6 @@ function formSubmit(event, action) {
 }
 
 function reRenderCarList() {
-  console.log("redendering.....");
   const carListComponent = document.getElementsByTagName("car-list-component");
 
   const recentCarElem = carListComponent[0];
@@ -75,32 +74,42 @@ function renderSuccessMessage(type, res) {
   document.getElementById(`success-div-${action}`).classList.remove("d-none");
 
   if (type === "find") {
-    document.getElementById(
-      `success-div-unpark`
-    ).innerHTML = `<div class = "d-flex flex-column align-items-center">
-    <p class=" fs-4 my-1">Car has been parked :-<strong class="d-inline text-success">${res.slot_id}</strong></p>
-    <button id="unpark-car-btn" type="button" class="btn btn-outline-danger d-block my-2 mx-auto">Unpark</button>
-    </div>`;
-    document.getElementById("unpark-car-btn").addEventListener("click", () => {
-      unparkCar(res.registration_no);
-    });
+    findSuccessMessage(res);
     return;
   } else if (type === "unpark") {
-    document.getElementById(
-      `success-div-${action}`
-    ).innerHTML = `<h4 class="d-inline text-success">Car has been unparked</h4>`;
-    document.getElementById(
-      "modal-div"
-    ).innerHTML = `Your Car has been unparked`;
+    unparkSuceessMessage();
   } else {
-    document.getElementById("slot-id").innerText = res.slot_id;
-    document.getElementById(
-      "modal-div"
-    ).innerHTML = `${res.message}: ${res.slot_id}`;
+    parkSuccessMessage(res);
   }
   dialog.showModal();
 
   removeAlertMessages(action);
   document.getElementById(`car-form-${action}`).reset();
   reRenderCarList();
+}
+
+function findSuccessMessage(res) {
+  document.getElementById(
+    `success-div-unpark`
+  ).innerHTML = `<div class = "d-flex flex-column align-items-center">
+  <p class=" fs-4 my-1">Car has been parked :-<strong class="d-inline text-success">${res.slot_id}</strong></p>
+  <button id="unpark-car-btn" type="button" class="btn btn-outline-danger d-block my-2 mx-auto">Unpark</button>
+  </div>`;
+  document.getElementById("unpark-car-btn").addEventListener("click", () => {
+    unparkCar(res.registration_no);
+  });
+}
+
+function unparkSuceessMessage() {
+  document.getElementById(
+    `success-div-unpark`
+  ).innerHTML = `<h4 class="d-inline text-success">Car has been unparked</h4>`;
+  document.getElementById("modal-div").innerHTML = `Your Car has been unparked`;
+}
+
+function parkSuccessMessage(res) {
+  document.getElementById("slot-id").innerText = res.slot_id;
+  document.getElementById(
+    "modal-div"
+  ).innerHTML = `${res.message}: ${res.slot_id}`;
 }
