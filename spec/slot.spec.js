@@ -3,16 +3,14 @@ import ParkingLot from "../model/parkingLot.js";
 import Slot from "../model/slot.js";
 
 describe("Slots", () => {
-
+  
   beforeEach(() => {
     Slot.reset();
+    Car.reset();
   });
 
   afterEach(() => {
     Slot.reset();
-  });
-
-  afterAll(() => {
     Car.reset();
   });
 

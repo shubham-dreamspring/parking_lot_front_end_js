@@ -3,13 +3,12 @@ import ParkingLot from "../model/parkingLot.js";
 import { RecordNotFound } from "../utils/errors/errors.js";
 
 describe("Parking Lot", () => {
-  
   beforeEach(() => {
-    ParkingLot.initialise();
+    ParkingLot.reset();
   });
 
   afterEach(() => {
-    ParkingLot.initialise();
+    ParkingLot.reset();
   });
 
   it("will park car", () => {

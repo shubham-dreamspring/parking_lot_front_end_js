@@ -5,10 +5,13 @@ import { CarNotFound, SlotNotFound } from "../utils/errors/errors.js";
 
 class ParkingLot {
   static initialise() {
+    Car.intialise();
+    Slot.intialise();
+  }
+  static reset() {
     Car.reset();
     Slot.reset();
   }
-
   static park(car) {
     car.create();
     let slot = Slot.getEmptySlot();

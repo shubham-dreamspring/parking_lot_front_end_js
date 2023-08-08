@@ -67,6 +67,12 @@ class CustomOrm {
     );
     return instance;
   }
+
+  static intialise() {
+    if (!CustomOrm._adapter.read(this._doc)) {
+      CustomOrm.reset();
+    }
+  }
 }
 
 export default CustomOrm;

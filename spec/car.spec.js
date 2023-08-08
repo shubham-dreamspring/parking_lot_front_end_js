@@ -6,7 +6,7 @@ describe("Cars ", () => {
   beforeEach(() => {
     Car.reset();
   });
-  afterAll(() => {
+  afterEach(() => {
     Car.reset();
   });
   it("will throw error on creation with invalid registration no", () => {

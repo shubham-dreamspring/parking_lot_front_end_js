@@ -8,6 +8,7 @@ import Car from "./car.js";
 
 class Slot extends CustomOrm {
   static _doc = "slots";
+  static _noOfSlots = 10;
 
   constructor(id, vehicle_id = null, timestamp = null) {
     super(Slot._doc);
@@ -68,9 +69,7 @@ class Slot extends CustomOrm {
 
   static reset() {
     let data = [];
-    const noOfSlots = process.env.TOTAL_NUMBER_OF_SLOTS || 10;
-
-    for (let i = 1; i <= noOfSlots; i++) {
+    for (let i = 1; i <= Slot._noOfSlots; i++) {
       data.push({
         id: i,
         timestamp: null,

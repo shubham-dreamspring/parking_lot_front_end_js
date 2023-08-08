@@ -2,6 +2,10 @@ import Car from "../model/car.js";
 import ParkingLot from "../model/parkingLot.js";
 import errorHandler from "../utils/errors/errorHandler.js";
 class ParkingLotController {
+  constructor() {
+    this.initialize();
+  }
+
   getCarByRegNo(registration_no) {
     let data = null;
     try {
