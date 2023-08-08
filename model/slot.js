@@ -3,7 +3,7 @@ import {
   NoEmptySlot,
   SlotNotFound,
 } from "../utils/errors/errors.js";
-import CustomOrm from "../utils/orm.js";
+import CustomOrm from "../utils/customOrm.js";
 import Car from "./car.js";
 
 class Slot extends CustomOrm {

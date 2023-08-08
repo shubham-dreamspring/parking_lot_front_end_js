@@ -1,5 +1,3 @@
-import { AlreadyExist, InvalidInput, RecordNotFound } from "./errors.js";
-
 function renderErrorMessage(message, action) {
   if (!action) {
     alert(message);

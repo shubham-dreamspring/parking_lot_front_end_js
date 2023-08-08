@@ -1,5 +1,5 @@
-import RegistrationNoValidator from "../utils/validator.js";
-import CustomORM from "../utils/orm.js";
+import RegistrationNoValidator from "../utils/registrationNoValidator.js";
+import CustomORM from "../utils/customOrm.js";
 import { InvalidRegNo, CarAlreadyParked } from "../utils/errors/errors.js";
 
 class Car extends CustomORM {

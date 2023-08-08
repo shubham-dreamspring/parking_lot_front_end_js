@@ -1,4 +1,4 @@
-import RegistrationNoValidator from "../utils/validator.js";
+import RegistrationNoValidator from "../utils/registrationNoValidator.js";
 
 describe("Vadiation of registration number", () => {
 

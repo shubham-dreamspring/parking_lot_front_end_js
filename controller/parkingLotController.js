@@ -36,13 +36,14 @@ class ParkingLotController {
     return data;
   }
 
-  initialize(registration_no) {
+  initialize() {
     try {
       ParkingLot.initialise();
-      res.send({ message: "Parking lot has been initialised" });
+      return { message: "Parking lot has been initialised" };
     } catch (e) {
       errorHandler(e);
     }
+    return null;
   }
 }
 
