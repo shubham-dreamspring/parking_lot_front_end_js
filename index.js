@@ -22,7 +22,7 @@ function unparkCar(registration_no) {
   renderSuccessMessage("unpark", res);
 }
 
-async function findCar(registration_no) {
+function findCar(registration_no) {
   const res = parkingLotController.getCarByRegNo(registration_no);
   if (!res) {
     return;
