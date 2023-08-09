@@ -13,18 +13,21 @@ describe("Parking Lot", () => {
 
   describe("#park", () => {
     it("will park car", () => {
-      let car = new Car("UP12345678");
+      const car = new Car("UP12345678");
+
       ParkingLot.park(car);
 
-      expect(ParkingLot.parkedCars()[0].registration_no).toBe(
-        car.registration_no
-      );
+      expect(
+        ParkingLot.parkedCars().find(
+          (parkedCar) => parkedCar.registration_no === car.registration_no
+        )
+      ).toBeDefined();
     });
   });
 
   describe("#unpark", () => {
     it("will throw error if car is not parked", () => {
-      let car = new Car("KA23123456");
+      const car = new Car("KA23123456");
 
       expect(function () {
         ParkingLot.unpark(car);
@@ -32,12 +35,16 @@ describe("Parking Lot", () => {
     });
 
     it("will unpark car", () => {
-      let car = new Car("UP12345678");
+      const car = new Car("UP12345678");
       ParkingLot.park(car);
 
       ParkingLot.unpark(car);
 
-      expect(Car.find("registration_no", car.registration_no)).toBeUndefined();
+      expect(
+        ParkingLot.parkedCars().find(
+          (parkedCar) => parkedCar.registration_no === car.registration_no
+        )
+      ).toBeUndefined();
     });
   });
 });

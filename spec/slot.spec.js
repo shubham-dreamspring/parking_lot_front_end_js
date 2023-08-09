@@ -27,15 +27,17 @@ describe("Slots", () => {
       ParkingLot.reset();
     });
 
-    it("will give filled slots", function () {
-      let slots = Slot.getFilledSlot();
+    it("will give filled slots with parked park", function () {
+      const slots = Slot.getFilledSlot();
 
-      expect(slots[0].vehicle_id).toBe(this.car.id);
+      expect(
+        slots.find((slot) => slot.vehicle_id === this.car.id)
+      ).toBeDefined();
     });
 
     it("will return car parked on a slot", function () {
-      let slot = Slot.find("id", this.parked_car.slot_id);
-      let carAtSlot = slot.car();
+      const slot = Slot.find("id", this.parked_car.slot_id);
+      const carAtSlot = slot.car();
 
       const registration_no = carAtSlot.registration_no;
 

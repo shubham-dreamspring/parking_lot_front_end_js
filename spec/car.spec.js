@@ -12,7 +12,7 @@ describe("Cars", () => {
 
   describe("on create", () => {
     it("will throw error if it is invalid registration no", () => {
-      let car = new Car("UPsdaksd93459cd48");
+      const car = new Car("UPsdaksd93459cd48");
 
       expect(function () {
         car.create();
@@ -20,7 +20,7 @@ describe("Cars", () => {
     });
 
     it("will save", () => {
-      let registration_no = "UP12345678";
+      const registration_no = "UP12345678";
 
       new Car(registration_no).create();
 
@@ -28,10 +28,11 @@ describe("Cars", () => {
     });
 
     it("will throw error if car is already existed", () => {
-      new Car("WW91827364").create();
+      const registration_no = "WW91827364";
+      new Car(registration_no).create();
 
       expect(function () {
-        new Car("WW91827364").create();
+        new Car(registration_no).create();
       }).toThrowError(AlreadyExist);
     });
   });

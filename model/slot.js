@@ -18,7 +18,7 @@ class Slot extends CustomOrm {
   }
 
   isEmpty() {
-    return !this.timestamp && !this.vehicle_id;
+    return !this.vehicle_id;
   }
 
   car() {
@@ -29,7 +29,7 @@ class Slot extends CustomOrm {
 
   static getEmptySlot() {
     let slots = this.findAll();
-    let emptyslots = slots.filter((slot) => !slot.vehicle_id);
+    let emptyslots = slots.filter((slot) => slot.isEmpty());
 
     if (!emptyslots.length) {
       throw new NoEmptySlot("No empty slot is available");
